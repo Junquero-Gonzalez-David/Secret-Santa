@@ -75,63 +75,64 @@ public class App {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(200, 200, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setResizable(false);
 		
 		JPanel start = new JPanel();
-		start.setBounds(0, 0, 434, 261);
+		start.setBounds(0, 0, 784, 561);
 		frame.getContentPane().add(start);
 		start.setLayout(null);
 
 		JPanel raffle = new JPanel();
-		raffle.setBounds(0, 0, 434, 261);
+		raffle.setBounds(0, 0, 784, 561);
 		frame.getContentPane().add(raffle);
 		raffle.setLayout(null);
 		raffle.setVisible(false);
 		
 		JPanel userPanel = new JPanel();
-		userPanel.setBounds(0, 0, 434, 261);
+		userPanel.setBounds(0, 0, 784, 561);
 		frame.getContentPane().add(userPanel);
 		userPanel.setLayout(null);
 		userPanel.setVisible(false);
 		
-		JLabel lblSecretSanta = new JLabel("Secret Santa");
-		lblSecretSanta.setFont(new Font("Sylfaen", Font.PLAIN, 25));
+		JLabel lblSecretSanta = new JLabel("Peix_Hack.exe");
+		lblSecretSanta.setFont(new Font("Sylfaen", Font.PLAIN, 50));
 		lblSecretSanta.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSecretSanta.setBounds(106, 32, 203, 53);
+		lblSecretSanta.setBounds(197, 89, 376, 101);
 		start.add(lblSecretSanta);
 		
-		JLabel lblDesignedBy = new JLabel("Designer:");
-		lblDesignedBy.setFont(new Font("Sitka Display", Font.PLAIN, 17));
-		lblDesignedBy.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDesignedBy.setBounds(51, 96, 88, 26);
+		JLabel lblDesignedBy = new JLabel("Disseny:");
+		lblDesignedBy.setFont(new Font("Sitka Display", Font.PLAIN, 30));
+		lblDesignedBy.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDesignedBy.setBounds(21, 324, 244, 26);
 		start.add(lblDesignedBy);
 		
-		JLabel lblImplementation = new JLabel("Implementation");
-		lblImplementation.setHorizontalAlignment(SwingConstants.LEFT);
-		lblImplementation.setFont(new Font("Sitka Display", Font.PLAIN, 13));
-		lblImplementation.setBounds(43, 133, 129, 26);
+		JLabel lblImplementation = new JLabel("Implementaci\u00F3:");
+		lblImplementation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImplementation.setFont(new Font("Sitka Display", Font.PLAIN, 30));
+		lblImplementation.setBounds(21, 361, 244, 26);
 		start.add(lblImplementation);
 		
 		JLabel lblJanDuo = new JLabel("Jan Du\u00F1o");
 		lblJanDuo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblJanDuo.setFont(new Font("Sitka Display", Font.PLAIN, 20));
-		lblJanDuo.setBounds(184, 96, 88, 26);
+		lblJanDuo.setFont(new Font("Sitka Display", Font.PLAIN, 25));
+		lblJanDuo.setBounds(294, 327, 214, 26);
 		start.add(lblJanDuo);
 		
 		JLabel lblDavidJunquero = new JLabel("David Junquero");
 		lblDavidJunquero.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDavidJunquero.setFont(new Font("Sitka Display", Font.PLAIN, 20));
-		lblDavidJunquero.setBounds(175, 132, 134, 26);
+		lblDavidJunquero.setFont(new Font("Sitka Display", Font.PLAIN, 25));
+		lblDavidJunquero.setBounds(294, 364, 214, 26);
 		start.add(lblDavidJunquero);
 		
-		JLabel lblNewLabel = new JLabel("v1.1");
-		lblNewLabel.setBounds(10, 236, 46, 14);
+		JLabel lblNewLabel = new JLabel("v1.1B");
+		lblNewLabel.setBounds(10, 536, 46, 14);
 		start.add(lblNewLabel);
 		
-		JButton btnInitializeRaffle = new JButton("Initialize Raffle");
+		JButton btnInitializeRaffle = new JButton("Iniciar sorteig");
+		btnInitializeRaffle.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnInitializeRaffle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -155,65 +156,67 @@ public class App {
 				}	
 			}
 		});
-		btnInitializeRaffle.setBounds(281, 198, 133, 38);
+		btnInitializeRaffle.setBounds(524, 459, 250, 91);
 		start.add(btnInitializeRaffle);
 		
 		JPanel nameSelection = new JPanel();
-		nameSelection.setBounds(0, 0, 434, 261);
+		nameSelection.setBounds(0, 0, 784, 561);
 		frame.getContentPane().add(nameSelection);
 		nameSelection.setLayout(null);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 29, 434, 232);
+		scrollPane_1.setBounds(0, 52, 784, 509);
 		nameSelection.add(scrollPane_1);
 		
 		buttonGrid = new JPanel();
 		scrollPane_1.setViewportView(buttonGrid);
 		buttonGrid.setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setFont(new Font("Sitka Text", Font.PLAIN, 20));
+		JButton btnBack = new JButton("Retrocedir");
+		btnBack.setFont(new Font("Sitka Text", Font.PLAIN, 30));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				userPanel.setVisible(true);
 				nameSelection.setVisible(false);
 			}
 		});
-		btnBack.setBounds(0, 0, 434, 28);
+		btnBack.setBounds(0, 0, 784, 41);
 		nameSelection.add(btnBack);
 		nameSelection.setVisible(false);
 		
 		JLabel lblSolution_1 = new JLabel("Solution 0");
-		lblSolution_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSolution_1.setBounds(350, 11, 74, 26);
+		lblSolution_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSolution_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSolution_1.setBounds(591, 11, 183, 26);
 		userPanel.add(lblSolution_1);
 		
-		JButton btnNewButton = new JButton("Select Name");
+		JButton btnNewButton = new JButton(">peix.Rastreig");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				userPanel.setVisible(false);
 				nameSelection.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(114, 172, 195, 44);
+		btnNewButton.setBounds(187, 349, 388, 123);
 		userPanel.add(btnNewButton);
-		btnNewButton.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 20));
+		btnNewButton.setFont(new Font("Segoe UI Black", Font.PLAIN, 40));
 		
-		JLabel label = new JLabel("Secret Santa");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Sylfaen", Font.PLAIN, 25));
-		label.setBounds(114, 48, 195, 53);
-		userPanel.add(label);
+		JLabel lblPeixhackexe = new JLabel("Peix_Hack.exe");
+		lblPeixhackexe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPeixhackexe.setFont(new Font("Comic Sans MS", Font.PLAIN, 70));
+		lblPeixhackexe.setBounds(95, 82, 610, 153);
+		userPanel.add(lblPeixhackexe);
 		
-		JLabel lblSolution = new JLabel("Select one of the available solutions:");
-		lblSolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel lblSolution = new JLabel("Selecciona una soluci\u00F3 disponible:");
+		lblSolution.setFont(new Font("Palatino Linotype", Font.PLAIN, 40));
 		lblSolution.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSolution.setBounds(28, 29, 345, 37);
+		lblSolution.setBounds(41, 39, 681, 68);
 		raffle.add(lblSolution);
 		
 		this.model = new DefaultListModel<String>();
 		
-		JButton btnNewButton_1 = new JButton("Random Raffle");
+		JButton btnNewButton_1 = new JButton("Soluci\u00F3 aleat\u00F2ria");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				randomSolution();
@@ -223,10 +226,11 @@ public class App {
 				userPanel.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(41, 227, 166, 23);
+		btnNewButton_1.setBounds(28, 480, 363, 50);
 		raffle.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Continue");
+		JButton btnNewButton_2 = new JButton("Continuar");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -242,11 +246,11 @@ public class App {
 				}
 			}
 		});
-		btnNewButton_2.setBounds(217, 227, 174, 23);
+		btnNewButton_2.setBounds(401, 480, 321, 50);
 		raffle.add(btnNewButton_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 118, 374, 85);
+		scrollPane.setBounds(28, 118, 694, 351);
 		raffle.add(scrollPane);
 		
 		list = new JList<String>(model);
@@ -287,7 +291,7 @@ public class App {
 			name.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JOptionPane.showMessageDialog(new JFrame(),
-							 (s+" will deliver its present to " + activeSolution.getAddressee(s)),
+							 ("AGENT: "+s+"\nOBJECTIU: " + activeSolution.getAddressee(s)),
 							    null,
 							    JOptionPane.WARNING_MESSAGE);	
 				}
