@@ -91,6 +91,12 @@ public class App {
 		raffle.setLayout(null);
 		raffle.setVisible(false);
 		
+		JPanel userPanel = new JPanel();
+		userPanel.setBounds(0, 0, 434, 261);
+		frame.getContentPane().add(userPanel);
+		userPanel.setLayout(null);
+		userPanel.setVisible(false);
+		
 		JLabel lblSecretSanta = new JLabel("Secret Santa");
 		lblSecretSanta.setFont(new Font("Sylfaen", Font.PLAIN, 25));
 		lblSecretSanta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -121,7 +127,7 @@ public class App {
 		lblDavidJunquero.setBounds(175, 132, 134, 26);
 		start.add(lblDavidJunquero);
 		
-		JLabel lblNewLabel = new JLabel("v1.0");
+		JLabel lblNewLabel = new JLabel("v1.1");
 		lblNewLabel.setBounds(10, 236, 46, 14);
 		start.add(lblNewLabel);
 		
@@ -157,18 +163,53 @@ public class App {
 		frame.getContentPane().add(nameSelection);
 		nameSelection.setLayout(null);
 		
-		JLabel lblSolution_1 = new JLabel("Solution 0");
-		lblSolution_1.setBounds(368, 11, 56, 14);
-		nameSelection.add(lblSolution_1);
-		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 36, 434, 225);
+		scrollPane_1.setBounds(0, 29, 434, 232);
 		nameSelection.add(scrollPane_1);
 		
 		buttonGrid = new JPanel();
 		scrollPane_1.setViewportView(buttonGrid);
 		buttonGrid.setLayout(new GridLayout(0, 3, 0, 0));
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Sitka Text", Font.PLAIN, 20));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				userPanel.setVisible(true);
+				nameSelection.setVisible(false);
+			}
+		});
+		btnBack.setBounds(0, 0, 434, 28);
+		nameSelection.add(btnBack);
+		nameSelection.setVisible(false);
+		
+		JLabel lblSolution_1 = new JLabel("Solution 0");
+		lblSolution_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSolution_1.setBounds(350, 11, 74, 26);
+		userPanel.add(lblSolution_1);
+		
+		JButton btnNewButton = new JButton("Select Name");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				userPanel.setVisible(false);
+				nameSelection.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(114, 172, 195, 44);
+		userPanel.add(btnNewButton);
+		btnNewButton.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 20));
+		
+		JLabel label = new JLabel("Secret Santa");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Sylfaen", Font.PLAIN, 25));
+		label.setBounds(114, 48, 195, 53);
+		userPanel.add(label);
+		
+		JLabel lblSolution = new JLabel("Select one of the available solutions:");
+		lblSolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSolution.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSolution.setBounds(28, 29, 345, 37);
+		raffle.add(lblSolution);
 		
 		this.model = new DefaultListModel<String>();
 		
@@ -179,7 +220,7 @@ public class App {
 				lblSolution_1.setText("Solution "+Integer.toString(randomSolution()+1));
 				setupNameSelection();
 				raffle.setVisible(false);
-				nameSelection.setVisible(true);
+				userPanel.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(41, 227, 166, 23);
@@ -192,7 +233,7 @@ public class App {
 					lblSolution_1.setText("Solution "+Integer.toString(selectSolution()+1));
 					setupNameSelection();
 					raffle.setVisible(false);
-					nameSelection.setVisible(true);
+					userPanel.setVisible(true);
 				} catch (IllegalStateException e1) {
 					JOptionPane.showMessageDialog(new JFrame(),
 							 "Select a solution to continue.",
@@ -204,24 +245,6 @@ public class App {
 		btnNewButton_2.setBounds(217, 227, 174, 23);
 		raffle.add(btnNewButton_2);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				buttonGrid.removeAll();
-				raffle.setVisible(true);
-				nameSelection.setVisible(false);
-			}
-		});
-		btnBack.setBounds(10, 7, 89, 23);
-		nameSelection.add(btnBack);
-		nameSelection.setVisible(false);
-		
-		JLabel lblSolution = new JLabel("Select one of the available solutions:");
-		lblSolution.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblSolution.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSolution.setBounds(28, 29, 345, 37);
-		raffle.add(lblSolution);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(28, 118, 374, 85);
 		raffle.add(scrollPane);
@@ -229,6 +252,7 @@ public class App {
 		list = new JList<String>(model);
 		scrollPane.setViewportView(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 	}
 	
 	private void loadSolutions() throws Exception{
