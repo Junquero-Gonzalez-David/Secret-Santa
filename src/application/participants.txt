@@ -1,0 +1,16 @@
+* Comentario
+#Baratheon
+Renly
+Stannis
+Robert
+Shireen
+
+#Lannister
+Jaime
+Tyrion
+Cersei
+
+#Targaryen
+Rahegar
+Aegon
+Aerys
