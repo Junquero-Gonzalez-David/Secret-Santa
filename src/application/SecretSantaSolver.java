@@ -1,8 +1,8 @@
 package application;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -15,18 +15,21 @@ public class SecretSantaSolver {
 	private boolean marks[];
 	private TreeSet<Solution> solutions;
 	public SecretSantaSolver(){
-		
-		try {
-			this.participants = loadConfiguration();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		this.solutions = new TreeSet<Solution>();
-		
+	}
+	
+	public boolean loadConfiguration(){
+		try {
+			this.participants = loadParticipants();
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	public TreeSet<Solution> findSolutions(){
-		this.solutions = new 	TreeSet<Solution>();
+		if(this.participants == null) throw new IllegalStateException("Participants are not loaded");
+		this.solutions = new TreeSet<Solution>();
 		marks = new boolean[participants.size()];
 		for(int i=0; i<marks.length;i++){
 			marks[i] = false;
@@ -39,27 +42,31 @@ public class SecretSantaSolver {
 		return this.solutions;
 		
 	}
-	private void backTracking(HashMap<Participant,Participant> solution, int index){
-		    if(isSolution()){
-		        this.solutions.add(new Solution(solution));
-		    } else {
-		        for(Participant p:participants){
-		        	if(!marks[participants.indexOf(p)]){
-		        		if(p.getFamily() != participants.get(index).getFamily()){
-			        		
-		        			solution.put(participants.get(index),p);
-			        		marks[participants.indexOf(p)] = true;		
-			        		
-			        		backTracking(solution,index+1);
-			        		
-			        		solution.remove(participants.get(index));
-			        		marks[participants.indexOf(p)] = false;	
 
-		        		}
-		        	}
-		        }       
-		    }
+	private void backTracking(HashMap<Participant, Participant> solution, int index) {
+		if (isSolution()) {
+			this.solutions.add(new Solution(solution));
+		} else {
+			if (solutions.size() < 5) {
+				for (Participant p : participants) {
+					if (!marks[participants.indexOf(p)]) {
+						if (p.getFamily() != participants.get(index).getFamily()) {
+
+							solution.put(participants.get(index), p);
+							marks[participants.indexOf(p)] = true;
+
+							if (solutions.size() < 10)
+								backTracking(solution, index + 1);
+
+							solution.remove(participants.get(index));
+							marks[participants.indexOf(p)] = false;
+
+						}
+					}
+				}
+			}
 		}
+	}
 	private boolean isSolution(){
 		for(int i = 0; i<marks.length;i++){
 			if (!marks[i]) return false;
@@ -67,10 +74,10 @@ public class SecretSantaSolver {
 		return true;
 	}
 	
-	private ArrayList<Participant> loadConfiguration() throws Exception{
+	private ArrayList<Participant> loadParticipants() throws Exception{
 		ArrayList<Participant> set = new ArrayList<Participant>();
-		BufferedReader in = new BufferedReader(new FileReader("src/application/participants.txt"));
-
+		BufferedReader in = new BufferedReader(new FileReader("./participants.txt"));
+				
 		String line;
 		Family currentFamily = new Family("independent");
 		char ch = ' ';

@@ -15,5 +15,7 @@ public class Family{
 		if(!(o instanceof Family)) throw new IllegalArgumentException();
 		return ((Family)o).getFName().equals(this.fName);
 	}
-	
+	public String toString(){
+		return this.fName;
+	}
 }

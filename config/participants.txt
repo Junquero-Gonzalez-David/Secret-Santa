@@ -14,3 +14,10 @@ Cersei
 Rahegar
 Aegon
 Aerys
+
+#Tully
+Brynden
+Hoster
+Edmure
+Lysa
+Catelyn

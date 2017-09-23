@@ -18,8 +18,14 @@ public class Participant{
 	public String getFamilyName(){
 		return this.family.getFName();
 	}
+	public String toString(){
+		return this.pName;
+	}
 	public boolean equals(Object o){
 		if(!(o instanceof Participant)) throw new IllegalArgumentException();
 		return ((Participant)o).getPName().equals(this.pName);
+	}
+	public int hashCode(){
+		return this.pName.hashCode();
 	}
 }

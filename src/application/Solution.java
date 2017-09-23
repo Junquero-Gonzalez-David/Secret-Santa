@@ -1,4 +1,5 @@
 package application;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import domain.Family;
@@ -40,5 +41,16 @@ public class Solution implements Comparable<Solution>{
 	}
 	public int getRating(){
 		return this.rating;
+	}
+	public ArrayList<String> getKeyPNames(){
+		ArrayList<String> output = new ArrayList<String>();
+		for(Participant p:solution.keySet()){
+			output.add(p.getPName());
+		}
+		return output;
+	}
+	public String getAddressee(String s){
+		Participant p = new Participant(s,null);
+		return this.solution.get(new Participant(s,new Family(""))).getPName();
 	}
 }
