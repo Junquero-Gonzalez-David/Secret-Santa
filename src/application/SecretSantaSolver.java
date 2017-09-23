@@ -2,6 +2,9 @@ package application;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 import domain.Family;
 import domain.Participant;
@@ -10,7 +13,7 @@ public class SecretSantaSolver {
 
 	private ArrayList<Participant> participants;
 	private boolean marks[];
-	private ArrayList<Solution> solutions;
+	private TreeSet<Solution> solutions;
 	public SecretSantaSolver(){
 		
 		try {
@@ -18,39 +21,38 @@ public class SecretSantaSolver {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		solutions = new ArrayList<Solution>();
+		this.solutions = new TreeSet<Solution>();
 		
 	}
 	
-	public ArrayList<Solution> findSolutions(){
-		this.solutions = new ArrayList<Solution>();
+	public TreeSet<Solution> findSolutions(){
+		this.solutions = new 	TreeSet<Solution>();
 		marks = new boolean[participants.size()];
 		for(int i=0; i<marks.length;i++){
 			marks[i] = false;
 		}
 		
-		backTracking(0);
+		HashMap<Participant,Participant> solution = new HashMap<Participant,Participant>();
+		backTracking(solution,0);
 		
 		if(solutions.size()<1) throw new IllegalArgumentException("No solution could be found");
 		return this.solutions;
 		
 	}
-	private void backTracking(int index){
+	private void backTracking(HashMap<Participant,Participant> solution, int index){
 		    if(isSolution()){
-		    	System.out.println("SOLUTION FOUND");
-		        if(!alreadyExistingSolution()) this.solutions.add(new Solution(participants));
+		        this.solutions.add(new Solution(solution));
 		    } else {
 		        for(Participant p:participants){
 		        	if(!marks[participants.indexOf(p)]){
 		        		if(p.getFamily() != participants.get(index).getFamily()){
-		        			participants.get(index).setPresentAddressee(p);
-			        		System.out.println("Trying "+participants.get(index).getPName() + " sends present to " + p.getPName());
+			        		
+		        			solution.put(participants.get(index),p);
 			        		marks[participants.indexOf(p)] = true;		
 			        		
-			        		backTracking(index+1);
+			        		backTracking(solution,index+1);
 			        		
-			        		System.out.println("Backing "+participants.get(index).getPName() + " sends present to " + p.getPName());
-			        		
+			        		solution.remove(participants.get(index));
 			        		marks[participants.indexOf(p)] = false;	
 
 		        		}
@@ -63,9 +65,6 @@ public class SecretSantaSolver {
 			if (!marks[i]) return false;
 		}
 		return true;
-	}
-	private boolean alreadyExistingSolution(){
-		
 	}
 	
 	private ArrayList<Participant> loadConfiguration() throws Exception{

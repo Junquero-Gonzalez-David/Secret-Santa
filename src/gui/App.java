@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.TreeSet;
 
 import javax.swing.JFrame;
 
@@ -39,8 +41,9 @@ public class App {
 		solve();
 	}
 	private void solve(){
-		ArrayList<Solution> solutions = secretSantaSolver.findSolutions();
+		TreeSet<Solution> solutions = secretSantaSolver.findSolutions();
 		int i = 1;
+		System.out.println("\n\n\n");
 		for(Solution s:solutions){
 			System.out.println("########################");
 			System.out.println("SOLUTION "+i);
@@ -49,6 +52,7 @@ public class App {
 			System.out.println("\n\n\n");
 			i++;
 		}
+		System.out.println("Total number of solutions found: "+solutions.size());
 	}
 	/**
 	 * Initialize the contents of the frame.
